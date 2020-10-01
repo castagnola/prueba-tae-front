@@ -1,0 +1,59 @@
+<div class="container">
+  <button
+    style="margin-right: 15px"
+    type="button"
+    class="btn btn-info btn-lg"
+    (click)="addAutor()"
+  >
+    Nuevo Autor
+  </button>
+  <button type="button" class="btn btn-info btn-lg" (click)="addPost()">
+    Nuevo Post
+  </button>
+</div>
+
+<app-post
+  *ngIf="addPostB && autores"
+  (onEmitCreate)="onCreatePost($event)"
+  [autores]="autores"
+></app-post>
+<app-autor *ngIf="addAutorB" (onEmitCreate)="onCreateAutor($event)"></app-autor>
+<div class="table-responsive">
+  <table style="margin-top: 15px" class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Contenido</th>
+        <th scope="col">Nombre Creador</th>
+        <th scope="col">Apellido Creador</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts">
+        <th scope="row">{{ post.id }}</th>
+        <td>{{ post.titulo }}</td>
+        <td>{{ post.contenido }}</td>
+        <td>{{ post.autor.nombre }}</td>
+        <td>{{ post.autor.apellidos }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info btn-lg"
+            (click)="onEditPost()"
+          >
+            Editar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-lg"
+            (click)="onDeletePost()"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

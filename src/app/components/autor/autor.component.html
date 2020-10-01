@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      aria-describedby="emailHelp"
+      placeholder="Nombre"
+      formControlName="nombre"
+    />
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.nombre?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Nombre es requerido</small>
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.nombre?.errors?.maxlength"
+    class="form-group"
+  >
+    <small class="alert alert-danger"
+      >Nombre debe contener maximo 20 caracteres</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="apellidos">Apellidos</label>
+    <input
+      type="text"
+      class="form-control"
+      aria-describedby="emailHelp"
+      placeholder="Apellidos"
+      formControlName="apellidos"
+    />
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.apellidos?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Apellido es requerido</small>
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.apellidos?.errors?.maxlength"
+    class="form-group"
+  >
+    <small class="alert alert-danger"
+      >Apellido debe contener maximo 20 caracteres</small
+    >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>

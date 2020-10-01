@@ -1,0 +1,59 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <div class="form-group">
+    <label for="titulo">Titulo</label>
+    <input
+      type="text"
+      class="form-control"
+      aria-describedby="emailHelp"
+      placeholder="Titulo"
+      formControlName="titulo"
+    />
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.titulo?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Titulo es requerido</small>
+  </div>
+
+  <div class="form-group">
+    <label for="contenido">Contenido</label>
+    <textarea class="form-control" formControlName="contenido"> </textarea>
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.contenido?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Contenido es requerido</small>
+  </div>
+  <div class="form-group">
+    <label for="imagen">Imagen</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Imagen"
+      formControlName="imagen"
+    />
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.imagen?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Imagen es requerido</small>
+  </div>
+  <div class="form-group">
+    <label for="autor">Autor</label>
+    <select class="form-control" formControlName="autor_id">
+      <option *ngFor="let autor of autores">
+        {{ autor.nombre + " " + autor.apellidos }}
+      </option>
+    </select>
+  </div>
+  <div
+    *ngIf="isSubmitted && form.controls.autor_id?.errors?.required"
+    class="form-group"
+  >
+    <small class="alert alert-danger">Autor es requerido</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>
